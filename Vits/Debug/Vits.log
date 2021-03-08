@@ -1,0 +1,21 @@
+﻿  Filter.cpp
+  Filter_Math.cpp
+C:\Users\hackb\source\repos\Vits\Vits\filter\Filter_Math.hpp(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\hackb\source\repos\Vits\Vits\filter\Filter_Math.cpp(4,20): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\hackb\source\repos\Vits\Vits\filter\Filter_Math.cpp(4,46): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Main.cpp
+C:\Users\hackb\source\repos\Vits\Vits\wingl\GLWindow.hpp(4,10): fatal error C1083: Cannot open include file: 'SDL2/SDL.h': No such file or directory
+  Matrix.cpp
+  Noise.cpp
+  Random.cpp
+  System.cpp
+C:\Users\hackb\source\repos\Vits\Vits\System.cpp(3,10): fatal error C1083: Cannot open include file: 'SDL2/SDL.h': No such file or directory
+  Time.cpp
+  Canvas.cpp
+  GLWindow.cpp
+C:\Users\hackb\source\repos\Vits\Vits\wingl\GLWindow.hpp(4,10): fatal error C1083: Cannot open include file: 'SDL2/SDL.h': No such file or directory
+  Rectangle.cpp
+C:\Users\hackb\source\repos\Vits\Vits\wingl\Rectangle.hpp(4,10): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  Window.cpp
+C:\Users\hackb\source\repos\Vits\Vits\wingl\Window.hpp(4,10): fatal error C1083: Cannot open include file: 'SDL2/SDL.h': No such file or directory
+  Generating Code...

@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{fb2094ae-69d6-49d5-b6ee-63777be9da81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filter">
+      <UniqueIdentifier>{7bc59f9d-862f-43cd-ad11-f9763459d4c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\video">
+      <UniqueIdentifier>{3d8c1053-74ca-42b6-b58e-fb148a6db270}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\wingl">
+      <UniqueIdentifier>{94841507-bfa4-4a63-b504-72a43a4d84f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math">
+      <UniqueIdentifier>{a43c9465-118b-4933-8c27-6afed7addd6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filter">
+      <UniqueIdentifier>{e58c1612-570a-452f-a446-09c8c997ef3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\wingl">
+      <UniqueIdentifier>{947685a6-5209-4c3c-b3bb-2460f2d15d15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\video">
+      <UniqueIdentifier>{ae51a3bb-9701-415d-baae-86d025703a37}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wingl\Canvas.cpp">
+      <Filter>Source Files\wingl</Filter>
+    </ClCompile>
+    <ClCompile Include="wingl\GLWindow.cpp">
+      <Filter>Source Files\wingl</Filter>
+    </ClCompile>
+    <ClCompile Include="wingl\Rectangle.cpp">
+      <Filter>Source Files\wingl</Filter>
+    </ClCompile>
+    <ClCompile Include="wingl\Window.cpp">
+      <Filter>Source Files\wingl</Filter>
+    </ClCompile>
+    <ClCompile Include="filter\Filter.cpp">
+      <Filter>Source Files\filter</Filter>
+    </ClCompile>
+    <ClCompile Include="filter\Filter_Math.cpp">
+      <Filter>Source Files\filter</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Matrix.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Noise.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Math.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wingl\Canvas.hpp">
+      <Filter>Header Files\wingl</Filter>
+    </ClInclude>
+    <ClInclude Include="wingl\GLWindow.hpp">
+      <Filter>Header Files\wingl</Filter>
+    </ClInclude>
+    <ClInclude Include="wingl\Rectangle.hpp">
+      <Filter>Header Files\wingl</Filter>
+    </ClInclude>
+    <ClInclude Include="wingl\Window.hpp">
+      <Filter>Header Files\wingl</Filter>
+    </ClInclude>
+    <ClInclude Include="filter\Filter.hpp">
+      <Filter>Header Files\filter</Filter>
+    </ClInclude>
+    <ClInclude Include="filter\Filter_Math.hpp">
+      <Filter>Header Files\filter</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Complex.hpp">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Matrix.hpp">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Noise.hpp">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Quaternion.hpp">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Vector.hpp">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
