@@ -13,6 +13,7 @@ public:
 
 	int width() { return w; }
 	int height() { return h; }
+	void current() { SDL_GL_MakeCurrent(window, context); }
 
 	void read(int*, int*, void*);
 	void write(int, int, const void*);

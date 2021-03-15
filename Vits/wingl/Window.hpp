@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include <string>
+#include <vector>
 
 class KeyboardMouse {
 public:
@@ -19,8 +20,12 @@ class Window {
 public:
 	Window(int, int, std::string);
 	virtual ~Window();
-	void update();
+	
+	static int windows() { return (int) list.size(); }
+	static void update();
+	
 	void clear();
+	void update_local();
 	void swap();
 
 	int width();
@@ -51,6 +56,8 @@ private:
 	KeyboardMouse keymouse;
 	bool closed, hidden, maximized;
 	SDL_Window* window;
+	std::vector<SDL_Event> events;
+	static std::vector<Window*> list;
 };
 
 #endif

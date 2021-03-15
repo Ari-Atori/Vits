@@ -1,4 +1,8 @@
 #include "Window.hpp"
+#include <vector>
+#include <algorithm>
+
+std::vector<Window*> Window::list;
 
 Window::Window(int width, int height, std::string title) {
 	window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_INPUT_FOCUS);
@@ -12,82 +16,105 @@ Window::Window(int width, int height, std::string title) {
 	// ...and the surface containing the icon pixel data is no longer required.
 	//SDL_FreeSurface(surface);
 	
+	list.push_back(this);
+
 	closed = hidden = maximized = false;
 	update();
 }
 
 Window::~Window() {
 	SDL_DestroyWindow(window);
+	list.erase(std::remove(list.begin(), list.end(), this), list.end());
 }
 
 void Window::update() {
 	SDL_Event e;
-
-	keymouse.mouse.xrel = keymouse.mouse.yrel = 0;
 	while (SDL_PollEvent(&e)) {
-		switch (e.type) {
-		case (SDL_QUIT):
-			closed = true;
-			break;
-		case SDL_KEYDOWN:
-			keymouse.keys[e.key.keysym.scancode] = true;
-			break;
-		case SDL_KEYUP:
-			keymouse.keys[e.key.keysym.scancode] = false;
-			break;
-		case SDL_MOUSEMOTION:
-			keymouse.mouse.x = e.motion.x;
-			keymouse.mouse.xrel = e.motion.xrel;
-			keymouse.mouse.y = e.motion.y;
-			keymouse.mouse.yrel = e.motion.yrel;
-			break;
-		case SDL_MOUSEBUTTONDOWN:
-			keymouse.mouse.buttons[e.button.button] = true;
-			break;
-		case SDL_MOUSEBUTTONUP:
-			keymouse.mouse.buttons[e.button.button] = false;
-			break;
-		case SDL_WINDOWEVENT:
-			switch (e.window.event) {
-			case SDL_WINDOWEVENT_SHOWN:
-				break;
-			case SDL_WINDOWEVENT_HIDDEN:
-				break;
-			case SDL_WINDOWEVENT_EXPOSED:
-				break;
-			case SDL_WINDOWEVENT_MOVED:
-				break;
-			case SDL_WINDOWEVENT_RESIZED:
-				break;
-			case SDL_WINDOWEVENT_SIZE_CHANGED:
-				break;
-			case SDL_WINDOWEVENT_MINIMIZED:
-				break;
-			case SDL_WINDOWEVENT_MAXIMIZED:
-				break;
-			case SDL_WINDOWEVENT_RESTORED:
-				break;
-			case SDL_WINDOWEVENT_ENTER:
-				break;
-			case SDL_WINDOWEVENT_LEAVE:
-				break;
-			case SDL_WINDOWEVENT_FOCUS_GAINED:
-				break;
-			case SDL_WINDOWEVENT_FOCUS_LOST:
-				break;
-			case SDL_WINDOWEVENT_CLOSE:
-				break;
-			case SDL_WINDOWEVENT_TAKE_FOCUS:
-				break;
-			case SDL_WINDOWEVENT_HIT_TEST:
-				break;
-			default:
-				SDL_Log("Window %d got unknown event %d", e.window.windowID, e.window.event);
+		int id = e.window.windowID;
+		Window* W = NULL;
+		for (Window* w : list)
+			if (SDL_GetWindowID(w->window) == id) {
+				W = w;
 				break;
 			}
+		if (e.type == SDL_QUIT) {
+			for (Window* w : list)
+				w->closed = true;
 		}
+		else if (W)
+			W->events.push_back(e);
 	}
+	for (Window* w : list)
+		w->update_local();
 	SDL_Delay(20);
+}
+
+void Window::update_local() {
+	keymouse.mouse.xrel = keymouse.mouse.yrel = 0;
+	for (SDL_Event e : events)
+		switch (e.type) {
+			case SDL_KEYDOWN:
+				keymouse.keys[e.key.keysym.scancode] = true;
+				break;
+			case SDL_KEYUP:
+				keymouse.keys[e.key.keysym.scancode] = false;
+				break;
+			case SDL_MOUSEMOTION:
+				keymouse.mouse.x = e.motion.x;
+				keymouse.mouse.xrel = e.motion.xrel;
+				keymouse.mouse.y = e.motion.y;
+				keymouse.mouse.yrel = e.motion.yrel;
+				break;
+			case SDL_MOUSEBUTTONDOWN:
+				keymouse.mouse.buttons[e.button.button] = true;
+				break;
+			case SDL_MOUSEBUTTONUP:
+				keymouse.mouse.buttons[e.button.button] = false;
+				break;
+			case SDL_WINDOWEVENT:
+				switch (e.window.event) {
+				case SDL_WINDOWEVENT_SHOWN:
+					break;
+				case SDL_WINDOWEVENT_HIDDEN:
+					break;
+				case SDL_WINDOWEVENT_EXPOSED:
+					break;
+				case SDL_WINDOWEVENT_MOVED:
+					break;
+				case SDL_WINDOWEVENT_RESIZED:
+					break;
+				case SDL_WINDOWEVENT_SIZE_CHANGED:
+					break;
+				case SDL_WINDOWEVENT_MINIMIZED:
+					break;
+				case SDL_WINDOWEVENT_MAXIMIZED:
+					break;
+				case SDL_WINDOWEVENT_RESTORED:
+					break;
+				case SDL_WINDOWEVENT_ENTER:
+					break;
+				case SDL_WINDOWEVENT_LEAVE:
+					break;
+				case SDL_WINDOWEVENT_FOCUS_GAINED:
+					break;
+				case SDL_WINDOWEVENT_FOCUS_LOST:
+					break;
+				case SDL_WINDOWEVENT_CLOSE:
+					closed = true;
+					SDL_DestroyWindow(window);
+					list.erase(std::remove(list.begin(), list.end(), this), list.end());
+					window = NULL;
+					break;
+				case SDL_WINDOWEVENT_TAKE_FOCUS:
+					break;
+				case SDL_WINDOWEVENT_HIT_TEST:
+					break;
+				default:
+					SDL_Log("Window %d got unknown event %d", e.window.windowID, e.window.event);
+					break;
+			}
+		}
+	events.empty();
 }
 
 void Window::clear() {
